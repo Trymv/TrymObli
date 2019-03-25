@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=BookSeries
+comment0.text=\r\n\ This\ class\ has\ the\ job\ to\ hold\ on\ book\ series.\r\n\ In\ this\ class\ you\ should\ be\ available\ to\ choose\ how\ many\ books\ there\ is\ in\r\n\ a\ book\ series,\ set\ the\ author\ of\ the\ book\ and\ set\ the\ title\ of\ every\ book.\r\n
+comment1.params=title\ author\ genre
+comment1.target=BookSeries(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=bookTitle
+comment2.target=void\ addBook(Literature)
+comment2.text=\r\n\ Add\ book\ into\ a\ array\ list\ of\ books\ of\ a\ series.\r\n\ @param\ bookTitle\ the\ name\ of\ the\ book\ to\ add\ into\ the\ series\r\n
+comment3.params=
+comment3.target=java.lang.String\ getGenre()
+comment3.text=\r\n\ Return\ the\ genre\ of\ the\ book\ series.\r\n\ @return\ the\ genre\ of\ the\ book\ series\r\n
+comment4.params=
+comment4.target=java.lang.String\ listAllBooks()
+comment4.text=\r\n\ List\ all\ books\ in\ the\ book\ register\ on\ the\ terminal.\r\n\ @return\ bookList\ list\ of\ the\ titles\ of\ all\ the\ books\r\n
+comment5.params=objectToBeRemoved
+comment5.target=boolean\ removeBookFromSeries(java.lang.String)
+comment5.text=\r\n\ Use\ iterator\ to\ search\ though\ literatureRegister\ with\ a\ parameter.\r\n\ If\ an\ exact\ match\ is\ found\ the\ object\ will\ be\ removed.\r\n\ @param\ objectToBeRemoved\ remove\ the\ book\ from\ the\ book\ register\ (ArrayList).\r\n\ @return\ true\ if\ object\ was\ successfully\ removed.\r\n
+numComments=6

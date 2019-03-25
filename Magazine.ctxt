@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Magazine
+comment0.text=\r\n\ This\ class\ has\ the\ job\ to\ hold\ on\ a\ object\ of\ magazine.\r\n\ In\ this\ class\ you\ should\ be\ available\ to\ set\ title,\ author\ and\ brand.\r\n\r\n\ @author\ TrymV\r\n\ @version\ 0.1\r\n
+comment1.params=title\ author\ brand
+comment1.target=Magazine(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Magazine.\r\n\ Will\ set\ title,\ author\ and\ brand.\r\n
+comment2.params=
+comment2.target=java.lang.String\ getBrand()
+comment2.text=\r\n\ Return\ the\ brand\ of\ the\ magazine.\r\n\ @return\ the\ brand\ of\ the\ magazine\r\n
+numComments=3

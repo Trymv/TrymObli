@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=TextInterface
+comment0.text=\r\n\ This\ class\ has\ to\ job\ to\ print\ out\ all\ texts\ to\ make\ it\ easier\ to\ change\ where\ the\ text\ will\ be\ shown.\r\n\ Also\ it\ will\ take\ care\ of\ terminal\ reading.\r\n\r\n\ @author\ TrymV\r\n\ @version\ 0.1\r\n
+comment1.params=outPrintText
+comment1.target=void\ textOutPrintln(java.lang.String)
+comment1.text=\r\n\ Takes\ in\ a\ text\ as\ a\ parameter\ to\ then\ print\ it\ out\ to\ the\ location\ you\ want\ it.\r\n\ Makes\ it\ easier\ to\ change\ out\ print\ location.\r\n\ @param\ outPrintText\ the\ text\ to\ be\ out\ printed.\r\n
+comment2.params=
+comment2.target=java.lang.String\ readNextLine()
+comment2.text=\r\n\ Read\ the\ next\ line\ of\ text\ the\ user\ input\ into\ the\ terminal.\r\n\ @return\ the\ line\ of\ text\ from\ the\ user.\r\n
+comment3.params=
+comment3.target=int\ readNextInt()
+comment3.text=\r\n\ Read\ the\ next\ integer\ from\ the\ user.\r\n\ @return\ the\ next\ integer\ from\ the\ user\r\n
+numComments=4
