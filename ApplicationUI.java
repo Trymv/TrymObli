@@ -180,16 +180,16 @@ public class ApplicationUI {
                     String yesOrNo = readNextLine();
                     if(testForMissMatch("YesOrNo", yesOrNo)) {
                         //To test for a miss match.
-                    }
-                    else if(yesOrNo.equals("yes")) {
-                        System.out.println("Enter title of book you want to add: ");
-                        String literatureToBeAddedTitle = readNextLine();
-                        checkForDuplicate(literatureToBeAddedTitle);
-                        Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
-                        literatureRegister.addLiteratureToSeries(literatureName, newBook);
-                    }
-                    else if(yesOrNo.equals("no")) {
-                        addingBooks = false;
+                        if(yesOrNo.equals("yes")) {
+                            System.out.println("Enter title of book you want to add: ");
+                            String literatureToBeAddedTitle = readNextLine();
+                            checkForDuplicate(literatureToBeAddedTitle);
+                            Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
+                            literatureRegister.addLiteratureToSeries(literatureName, newBook);
+                        }
+                        else if(yesOrNo.equals("no")) {
+                            addingBooks = false;
+                        }
                     }
                 }
 
@@ -218,12 +218,12 @@ public class ApplicationUI {
 
     /**
      * Find and remove a product based on the input name (title).
-     *
      */
     private void removeProduct() {
         String literatureName;
         String answer = readNextLine();
 
+        System.out.println("Do you want to delete literature from register or from book series?");
         while(testForMissMatch("RegisterOrBookSeries", answer)) {
             answer = readNextLine();
 
@@ -330,18 +330,18 @@ public class ApplicationUI {
     }
 
     /**
-     * Takes in a String to choose what case if miss match and a word to test against.
-     * If there is a miss match this method will true and print an error message.
-     * @param missMatchType what case of miss match. (YesOrNo, RegisterOrBookSeries)
+     * Takes in a String to choose what case of miss match and String of a word to test against.
+     * If there is a miss match this method will return true and print an error message.
+     * @param missMatchCase what case of miss match. (YesOrNo, RegisterOrBookSeries)
      * @param missMatchToTest text to test miss match against.
      * @return false if there is no miss match.
      * @throws InputMismatchException if user enters an invalid text.
      */
-    private boolean testForMissMatch(String missMatchType, String missMatchToTest) throws InputMismatchException {
+    private boolean testForMissMatch(String missMatchCase, String missMatchToTest) throws InputMismatchException {
         boolean missMatch = true;
         String errorText;
 
-        switch (missMatchType) {
+        switch (missMatchCase) {
             case "YesOrNo":
                 if(missMatchToTest.equals("yes") || missMatchToTest.equals("no")) {
                     missMatch = false;
