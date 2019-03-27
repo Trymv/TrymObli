@@ -46,14 +46,22 @@ public class Register
      */
     public boolean removeLiterature(String objectToBeRemoved) {
         boolean isLiteratureRemoved = false;
-        Iterator<Literature> it = literatureRegister.iterator();
+
+        for(Literature literature:literatureRegister) {
+            if(literature.getTitle().equals(objectToBeRemoved)) {
+                literatureRegister.remove(literature);
+                isLiteratureRemoved = true;
+            }
+        }
+
+        /*Iterator<Literature> it = literatureRegister.iterator();
         
         while(it.hasNext()) {
             if(it.next().getTitle().equals(objectToBeRemoved)) {
                 it.remove();
                 isLiteratureRemoved = true;
             }
-        }
+        }*/
         return isLiteratureRemoved;
     }
 
