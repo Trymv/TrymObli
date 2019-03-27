@@ -23,7 +23,6 @@ public class Book extends Literature
      * @return the genre of the book.
      */
     public String getGenre() {
-
         return this.genre;
     }
 }
