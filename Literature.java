@@ -3,18 +3,22 @@
  * Literatures can be sored and displayed.
  * This class serves as a superclass for different types if literatures.
  */
-public class Literature {
+public abstract class Literature {
     private String title;
     private String author;
 
     /**
      * Constructor for objects of the class Literature.
-     *
      * @param title The title of the literature.
      */
     public Literature(String title, String author) {
-        this.title = title;
-        this.author = author;
+        if (title != null || author != null) {
+            this.title = title;
+            this.author = author;
+        }
+        else {
+            throw new IllegalArgumentException("Title or author was set to null");
+        }
     }
 
     /**

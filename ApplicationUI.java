@@ -140,7 +140,7 @@ public class ApplicationUI {
         }
         else {
             System.out.println("The products you have is: ");
-            System.out.println(literatureRegister.listAllLiteratures());
+            System.out.println(literatureRegister.listAllLiterature());
         }
     }
 
@@ -151,69 +151,73 @@ public class ApplicationUI {
     private void addNewProduct() {
         int literatureType = this.showMenu("productMenu");
 
-        System.out.println("Enter title: ");
-        String literatureName = readNextLine();
-        checkForDuplicate(literatureName);
+        try {
+            System.out.println("Enter title: ");
+            String literatureName = readNextLine();
+            checkForDuplicate(literatureName);
 
-        System.out.println("Enter author: ");
-        String literatureAuthor = readNextLine();
+            System.out.println("Enter author: ");
+            String literatureAuthor = readNextLine();
 
-        switch (literatureType) {
+            switch (literatureType) {
 
-            case 1: //Book
-                System.out.println("Enter book genre: ");
-                String literatureGenre = readNextLine();
-                literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
-                System.out.println("Book register successful");
-                break;
+                case 1: //Book
+                    System.out.println("Enter book genre: ");
+                    String literatureGenre = readNextLine();
+                    literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
+                    System.out.println("Book register successful");
+                    break;
 
-            case 2: //Book series
-                boolean addingBooks = true;
-                System.out.println("Enter genre of book's in the series: ");
-                String seriesGenre = readNextLine();
-                literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
+                case 2: //Book series
+                    boolean addingBooks = true;
+                    System.out.println("Enter genre of book's in the series: ");
+                    String seriesGenre = readNextLine();
+                    literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
 
-                while(addingBooks) {
+                    while (addingBooks) {
 
-                    System.out.println("Do you want to add a book to " + literatureName + "? (yes or no)");
+                        System.out.println("Do you want to add a book to " + literatureName + "? (yes or no)");
 
-                    String yesOrNo = readNextLine();
-                    if(testForMissMatch("YesOrNo", yesOrNo)) {
-                        //To test for a miss match.
-                        if(yesOrNo.equals("yes")) {
-                            System.out.println("Enter title of book you want to add: ");
-                            String literatureToBeAddedTitle = readNextLine();
-                            checkForDuplicate(literatureToBeAddedTitle);
-                            Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
-                            literatureRegister.addLiteratureToSeries(literatureName, newBook);
-                        }
-                        else if(yesOrNo.equals("no")) {
-                            addingBooks = false;
+                        String yesOrNo = readNextLine();
+                        if (!testForMissMatch("YesOrNo", yesOrNo)) {
+                            //To test for a miss match.
+                            if (yesOrNo.equals("yes")) {
+                                System.out.println("Enter title of book you want to add: ");
+                                String literatureToBeAddedTitle = readNextLine();
+                                checkForDuplicate(literatureToBeAddedTitle);
+                                Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
+                                literatureRegister.addLiteratureToSeries(literatureName, newBook);
+                            } else if (yesOrNo.equals("no")) {
+                                addingBooks = false;
+                            }
                         }
                     }
-                }
 
-                break;
+                    break;
 
-            case 3: //New's papers
-                System.out.println("Enter brand of new's paper: ");
-                String newsPaperBrand = readNextLine();
-                literatureRegister.add(new NewsPaper(literatureName, literatureAuthor, newsPaperBrand));
-                System.out.println("New's paper register successful");
-                break;
+                case 3: //New's papers
+                    System.out.println("Enter brand of new's paper: ");
+                    String newsPaperBrand = readNextLine();
+                    literatureRegister.add(new NewsPaper(literatureName, literatureAuthor, newsPaperBrand));
+                    System.out.println("New's paper register successful");
+                    break;
 
-            case 4: //Magazine
-                System.out.println("Enter brand of magazine: ");
-                String literatureBrand = readNextLine();
-                literatureRegister.add(new Magazine(literatureName, literatureAuthor, literatureBrand));
-                System.out.println("Magazine register successful");
-                break;
+                case 4: //Magazine
+                    System.out.println("Enter brand of magazine: ");
+                    String literatureBrand = readNextLine();
+                    literatureRegister.add(new Magazine(literatureName, literatureAuthor, literatureBrand));
+                    System.out.println("Magazine register successful");
+                    break;
 
                 default:
                     System.out.println("ERROR");
                     break;
-        }
+            }
 
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -221,9 +225,9 @@ public class ApplicationUI {
      */
     private void removeProduct() {
         String literatureName;
+        System.out.println("Do you want to delete literature from register or from book series?");
         String answer = readNextLine();
 
-        System.out.println("Do you want to delete literature from register or from book series?");
         while(testForMissMatch("RegisterOrBookSeries", answer)) {
             answer = readNextLine();
 
