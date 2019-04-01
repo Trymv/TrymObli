@@ -14,7 +14,11 @@ public class Book extends Literature {
      */
     public Book(String title, String author, String genre) {
         super(title, author);
-        this.genre = genre;
+        if (genre != null) {
+            this.genre = genre;
+        }
+        else {            throw new IllegalArgumentException("Genre was set to null");            
+        }
     }
 
     /**
@@ -22,7 +26,6 @@ public class Book extends Literature {
      * @return the genre of the book.
      */
     public String getGenre() {
-
         return this.genre;
     }
 }

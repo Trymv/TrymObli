@@ -48,7 +48,8 @@ public class NewsPaperTest {
     }
     
     @Test
-    public void getAuthorTest() {
+    public void getAuthorTest() 
+    {
         assertEquals("Mr. Proffesor", newspaper1.getAuthor());
     }
 
@@ -56,6 +57,14 @@ public class NewsPaperTest {
     public void getBrandTest()
     {
         assertEquals("VG", newspaper1.getBrand());
+    }
+    
+    @Test
+    public void createMagazineWithNullTitle()
+    {
+        assertNotNull(newspaper1.getTitle());
+        assertNotNull(newspaper1.getAuthor());
+        assertNotNull(newspaper1.getBrand());
     }
 }
 

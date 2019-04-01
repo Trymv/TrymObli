@@ -16,4 +16,6 @@ comment5.params=
 comment5.target=void\ getAuthorTest()
 comment6.params=
 comment6.target=void\ getBrandTest()
-numComments=7
+comment7.params=
+comment7.target=void\ createMagazineWithNullTitle()
+numComments=8

@@ -14,7 +14,9 @@ import org.junit.Test;
 public class RegisterTest
 {
     private Register register1;
+    private BookSeries bookseries1;
     private Book book1;
+    private Book book2;
 
     /**
      * Default constructor for test class RegisterTest
@@ -32,6 +34,13 @@ public class RegisterTest
     @Before
     public void setUp()
     {
+        register1 = new Register();
+        bookseries1 = new BookSeries("Harry Potter", "J.K. Rowling", "Fantasy");
+        book1 = new Book("De vises stein", "J.K. Rowling", "Fantasy");
+        book2 = new Book("Mysteriekammeret", "J.K. Rowling", "Fantasy");
+        
+        bookseries1.addBook(book1);
+        bookseries1.addBook(book2);
     }
 
     /**
@@ -42,17 +51,9 @@ public class RegisterTest
     @After
     public void tearDown()
     {
-    }
-
-    /*
-    @Test
-    public void AddAndRemoveBookTest()
-    {
-        register1.add(book1);
-        assertEquals(true, register1.removeBook("Cat"));
-    }
+    }  
     
-
+    /*  
     @Test
     public void bookSearchTest()
     {
@@ -74,17 +75,27 @@ public class RegisterTest
 
     
       @return false and fail to remove any books.
-     
+    */
     @Test
     public void RemoveToFailTest()
     {
-        Book book1 = new Book("Cat", "Horror", "Catman");
-        Register register1 = new Register();
         register1.add(book1);
+        register1.add(book2);
         assertFalse(register1.removeBook("Cats"));
     }
-    */
+    
+    
+
+    @Test
+    public void removeLiteratureTest()
+    {
+        register1.add(book1);
+        register1.add(book2);
+        assertTrue(register1.removeLiterature("Mysteriekammeret"));
+    }
 }
+
+
 
 
 

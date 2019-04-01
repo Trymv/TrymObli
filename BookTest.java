@@ -9,8 +9,7 @@ import org.junit.Test;
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class BookTest
-{
+public class BookTest {
     private Book book1;
 
     /**
@@ -57,6 +56,21 @@ public class BookTest
     public void getGenreTest()
     {
         assertEquals("Horror", book1.getGenre());
+    }
+    
+    @Test
+    public void createMagazineWithNullTitle()
+    {
+        assertNotNull(book1.getTitle());
+        assertNotNull(book1.getAuthor());
+        assertNotNull(book1.getGenre());
+    }
+    
+    @Test
+    public void testTitleNull()
+    {
+        Book book2 = new Book(null, "Catman", "Horror");
+        assertNotNull(book2.getTitle());
     }
 }
 

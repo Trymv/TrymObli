@@ -44,6 +44,8 @@ public class ApplicationUI {
      */
     public void start() {
 
+        literatureRegister.add(new Book("title", null, null));
+        
         boolean quit = false;
 
         while (!quit) {

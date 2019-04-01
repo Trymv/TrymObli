@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=ApplicationUI
-comment0.text=\r\n\ Makes\ up\ the\ user\ interface\ (text\ based)\ of\ the\ application.\r\n\ Responsible\ for\ all\ user\ interaction,\ like\ displaying\ the\ menu\r\n\ and\ receiving\ input\ from\ the\ user.\r\n\ \r\n\ @author\ asty\r\n\ @version\ 1.1\r\n
+comment0.text=\r\n\ Makes\ up\ the\ user\ interface\ (text\ based)\ of\ the\ application.\r\n\ Responsible\ for\ all\ user\ interaction,\ like\ displaying\ the\ menu\r\n\ and\ receiving\ input\ from\ the\ user.\r\n\r\n\ @author\ asty\r\n\ @version\ 1.1\r\n
 comment1.params=
 comment1.target=ApplicationUI()
-comment1.text=\r\n\ Creates\ an\ instance\ of\ the\ ApplicationUI\ User\ interface.\ \r\n
+comment1.text=\r\n\ Creates\ an\ instance\ of\ the\ ApplicationUI\ User\ interface.\r\n
 comment10.params=
 comment10.target=int\ readNextInt()
 comment10.text=\r\n\ Read\ the\ next\ integer\ from\ the\ user.\r\n\ @return\ the\ next\ integer\ from\ the\ user\r\n
@@ -15,7 +15,7 @@ comment2.target=void\ start()
 comment2.text=\r\n\ Starts\ the\ application\ by\ showing\ the\ menu\ and\ retrieving\ input\ from\ the\r\n\ user.\r\n
 comment3.params=menuType
 comment3.target=int\ showMenu(java.lang.String)
-comment3.text=\r\n\ Displays\ the\ menu\ to\ the\ user,\ and\ waits\ for\ the\ users\ input.\ The\ user\ is\r\n\ expected\ to\ input\ an\ integer\ between\ 1\ and\ the\ max\ number\ of\ menu\ items.\ \r\n\ If\ the\ user\ inputs\ anything\ else,\ an\ InputMismatchException\ is\ thrown.\ \r\n\ The\ method\ returns\ the\ valid\ input\ from\ the\ user.\r\n\r\n\ @param\ menuType\ input\ what\ menu\ that\ you\ want\ to\ be\ shown\ (mainMenu,\ productMenu).\r\n\ @return\ the\ menu\ number\ (between\ 1\ and\ max\ menu\ item\ number)\ provided\ by\ the\ user.\r\n\ @throws\ InputMismatchException\ if\ user\ enters\ an\ invalid\ number/menu\ choice\r\n
+comment3.text=\r\n\ Displays\ the\ menu\ to\ the\ user,\ and\ waits\ for\ the\ users\ input.\ The\ user\ is\r\n\ expected\ to\ input\ an\ integer\ between\ 1\ and\ the\ max\ number\ of\ menu\ items.\r\n\ If\ the\ user\ inputs\ anything\ else,\ an\ InputMismatchException\ is\ thrown.\r\n\ The\ method\ returns\ the\ valid\ input\ from\ the\ user.\r\n\r\n\ @param\ menuType\ input\ what\ menu\ that\ you\ want\ to\ be\ shown\ (mainMenu,\ productMenu).\r\n\ @return\ the\ menu\ number\ (between\ 1\ and\ max\ menu\ item\ number)\ provided\ by\ the\ user.\r\n\ @throws\ InputMismatchException\ if\ user\ enters\ an\ invalid\ number/menu\ choice\r\n
 comment4.params=
 comment4.target=void\ listAllProducts()
 comment4.text=\r\n\ Lists\ all\ the\ products/literature\ in\ the\ register\r\n

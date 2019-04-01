@@ -61,10 +61,14 @@ public class MagazineTest {
     }
 
     @Test
-    public void getTitleTestNotNull()    {
+    public void createMagazineWithNullTitle()
+    {
         assertNotNull(magazine1.getTitle());
+        assertNotNull(magazine1.getAuthor());
+        assertNotNull(magazine1.getBrand());
     }
 }
+
 
 
 
