@@ -5,8 +5,7 @@
  * @author Group 18
  * @version 0.1
  */
-public class Book extends Literature
-{
+public class Book extends Literature {
     private String genre;
 
     /**

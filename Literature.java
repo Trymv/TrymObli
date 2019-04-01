@@ -13,8 +13,8 @@ public class Literature {
      * @param title The title of the literature.
      */
     public Literature(String title, String author) {
-        this.title = title;
-        this.author = author;
+            this.title = title;
+            this.author = author;
     }
 
     /**

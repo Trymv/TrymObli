@@ -32,8 +32,6 @@ public class RegisterTest
     @Before
     public void setUp()
     {
-        register1 = new Register();
-        book1 = new Book("Cat", "Horror", "Catman");
     }
 
     /**
@@ -53,7 +51,7 @@ public class RegisterTest
         register1.add(book1);
         assertEquals(true, register1.removeBook("Cat"));
     }
-    */
+    
 
     @Test
     public void bookSearchTest()
@@ -74,7 +72,7 @@ public class RegisterTest
         assertEquals(2, register1.getArrayLength());
     }
 
-    /*
+    
       @return false and fail to remove any books.
      
     @Test
@@ -87,6 +85,7 @@ public class RegisterTest
     }
     */
 }
+
 
 
 

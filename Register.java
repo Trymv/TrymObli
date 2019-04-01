@@ -7,8 +7,7 @@ import java.util.Iterator;
  * @author Group 18
  * @version 1.1
  */
-public class Register
-{
+public class Register {
     // instance variables - replace the example below with your own
     private ArrayList<Literature> literatureRegister;
 
@@ -16,7 +15,6 @@ public class Register
      * Constructor for objects of class Register
      */
     public Register() {
-
         this.literatureRegister = new ArrayList<>();
     }
     
@@ -25,7 +23,6 @@ public class Register
      * @return literatureRegister as array list.
      */
     public ArrayList<Literature> getBookRegister() {
-
         return literatureRegister;
     }
 
@@ -34,7 +31,6 @@ public class Register
      * @param literature add the book to the literature register (ArrayList).
      */
     public void add(Literature literature) {
-
         literatureRegister.add(literature);
     }
 

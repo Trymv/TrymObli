@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=BookTest
+comment0.target=NewsPaperTest
 comment0.text=\r\n\ The\ test\ class\ BookTest.\r\n\r\n\ @author\ \ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=BookTest()
+comment1.target=NewsPaperTest()
 comment1.text=\r\n\ Default\ constructor\ for\ test\ class\ BookTest\r\n
 comment2.params=
 comment2.target=void\ setUp()
@@ -15,5 +15,5 @@ comment4.target=void\ getTitleTest()
 comment5.params=
 comment5.target=void\ getAuthorTest()
 comment6.params=
-comment6.target=void\ getGenreTest()
+comment6.target=void\ getBrandTest()
 numComments=7

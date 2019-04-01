@@ -1,3 +1,5 @@
+
+
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
@@ -9,15 +11,14 @@ import org.junit.Test;
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class BookTest
-{
-    private Book book1;
+public class MagazineTest {
+    private Magazine magazine1;
 
     /**
      * Default constructor for test class BookTest
      */
 
-    public BookTest()
+    public MagazineTest()
     {
     }
 
@@ -29,7 +30,7 @@ public class BookTest
     @Before
     public void setUp()
     {
-        book1 = new Book("Cat", "Catman", "Horror");
+        magazine1 = new Magazine("Kjent kjendis på forsiden!", "Sladderdamen", "Kjent Magasin Navn");
     }
 
     /**
@@ -45,20 +46,26 @@ public class BookTest
     @Test
     public void getTitleTest()
     {
-        assertEquals("Cat", book1.getTitle());
+        assertEquals("Kjent kjendis på forsiden!", magazine1.getTitle());
     }
     
     @Test
     public void getAuthorTest() {
-        assertEquals("Catman", book1.getAuthor());
+        assertEquals("Sladderdamen", magazine1.getAuthor());
     }
 
     @Test
-    public void getGenreTest()
+    public void getBrandTest()
     {
-        assertEquals("Horror", book1.getGenre());
+        assertEquals("Kjent Magasin Navn", magazine1.getBrand());
+    }
+
+    @Test
+    public void getTitleTestNotNull()    {
+        assertNotNull(magazine1.getTitle());
     }
 }
+
 
 
 

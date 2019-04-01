@@ -5,7 +5,7 @@
  * @author TrymV
  * @version 0.1
  */
-public class NewsPaper  extends Literature {
+public class NewsPaper extends Literature {
     private String brand;
 
     /**
@@ -22,7 +22,6 @@ public class NewsPaper  extends Literature {
      * @return the brand of the magazine
      */
     public String getBrand() {
-
         return this.brand;
     }
 }

@@ -9,15 +9,14 @@ import org.junit.Test;
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class BookTest
-{
-    private Book book1;
+public class NewsPaperTest {
+    private NewsPaper newspaper1;
 
     /**
      * Default constructor for test class BookTest
      */
 
-    public BookTest()
+    public NewsPaperTest()
     {
     }
 
@@ -29,7 +28,7 @@ public class BookTest
     @Before
     public void setUp()
     {
-        book1 = new Book("Cat", "Catman", "Horror");
+        newspaper1 = new NewsPaper("NTNU artikkel", "Mr. Proffesor", "VG");
     }
 
     /**
@@ -45,18 +44,18 @@ public class BookTest
     @Test
     public void getTitleTest()
     {
-        assertEquals("Cat", book1.getTitle());
+        assertEquals("NTNU artikkel", newspaper1.getTitle());
     }
     
     @Test
     public void getAuthorTest() {
-        assertEquals("Catman", book1.getAuthor());
+        assertEquals("Mr. Proffesor", newspaper1.getAuthor());
     }
 
     @Test
-    public void getGenreTest()
+    public void getBrandTest()
     {
-        assertEquals("Horror", book1.getGenre());
+        assertEquals("VG", newspaper1.getBrand());
     }
 }
 

@@ -1,23 +1,22 @@
+
+
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class BookTest.
+ * The test class BookSeriesTest.
  *
  * @author  (your name)
  * @version (a version number or a date)
  */
-public class BookTest
+public class BookSeriesTest
 {
-    private Book book1;
-
     /**
-     * Default constructor for test class BookTest
+     * Default constructor for test class BookSeriesTest
      */
-
-    public BookTest()
+    public BookSeriesTest()
     {
     }
 
@@ -29,7 +28,6 @@ public class BookTest
     @Before
     public void setUp()
     {
-        book1 = new Book("Cat", "Catman", "Horror");
     }
 
     /**
@@ -41,25 +39,4 @@ public class BookTest
     public void tearDown()
     {
     }
-
-    @Test
-    public void getTitleTest()
-    {
-        assertEquals("Cat", book1.getTitle());
-    }
-    
-    @Test
-    public void getAuthorTest() {
-        assertEquals("Catman", book1.getAuthor());
-    }
-
-    @Test
-    public void getGenreTest()
-    {
-        assertEquals("Horror", book1.getGenre());
-    }
 }
-
-
-
-

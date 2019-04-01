@@ -22,7 +22,6 @@ public class Magazine extends Literature {
      * @return the brand of the magazine
      */
     public String getBrand() {
-
         return this.brand;
     }
 }
