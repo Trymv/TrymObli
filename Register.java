@@ -42,22 +42,14 @@ public class Register {
      */
     public boolean removeLiterature(String objectToBeRemoved) {
         boolean isLiteratureRemoved = false;
+        Iterator<Literature> it = literatureRegister.iterator();
 
-        for(Literature literature:literatureRegister) {
-            if(literature.getTitle().equals(objectToBeRemoved)) {
-                literatureRegister.remove(literature);
-                isLiteratureRemoved = true;
-            }
-        }
-
-        /*Iterator<Literature> it = literatureRegister.iterator();
-        
         while(it.hasNext()) {
             if(it.next().getTitle().equals(objectToBeRemoved)) {
                 it.remove();
                 isLiteratureRemoved = true;
             }
-        }*/
+        }
         return isLiteratureRemoved;
     }
 
@@ -69,11 +61,7 @@ public class Register {
      * @param newLiterature title of the literature you want to add.
      */
     public void addLiteratureToSeries(String seriesTitle, Book newLiterature) {
-        Iterator<Literature> it = literatureRegister.iterator();
-
-        while(it.hasNext()) {
-            Literature literature = it.next();
-
+        for(Literature literature:literatureRegister) {
             if (literature.getTitle().equals(seriesTitle) && literature instanceof BookSeries) {
                ((BookSeries) literature).addBook(newLiterature);
             }
@@ -86,11 +74,7 @@ public class Register {
      * @param literatureToBeRemoved title of the literature you want to remove.
      */
     public void removeLiteratureFromSeries(String seriesTitle, String literatureToBeRemoved) {
-        Iterator<Literature> it = literatureRegister.iterator();
-
-        while(it.hasNext()) {
-            Literature literature = it.next();
-
+        for(Literature literature:literatureRegister) {
             if (literature.getTitle().equals(seriesTitle) && literature instanceof BookSeries) {
                 ((BookSeries) literature).removeBookFromSeries(literatureToBeRemoved);
             }
@@ -121,15 +105,19 @@ public class Register {
      * List all books in the book register on the terminal.
      * @return bookList list of the titles of all the books
      */
-    public String listAllLiteratures() {
-        String literatureList = "";
-        
+    public String listAllLiterature() {
+        StringBuilder literatureList = new StringBuilder();
+
         for(Literature literature:literatureRegister) {
-            literatureList += literature.getTitle() + "\n";
+            literatureList.append(literature.getTitle()).append("\n");
         }
-        return literatureList;
+        return literatureList.toString();
     }
-    
+
+    /**
+     * For testing
+     * @return size of list.
+     */
     public int getArrayLength() {
         return literatureRegister.size();
     }

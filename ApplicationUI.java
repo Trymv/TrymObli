@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Makes up the user interface (text based) of the application.
  * Responsible for all user interaction, like displaying the menu
  * and receiving input from the user.
- * 
+ *
  * @author asty
  * @version 1.1
  */
@@ -32,7 +32,7 @@ public class ApplicationUI {
     };
 
     /**
-     * Creates an instance of the ApplicationUI User interface. 
+     * Creates an instance of the ApplicationUI User interface.
      */
     public ApplicationUI() {
         this.literatureRegister = new Register();
@@ -73,7 +73,7 @@ public class ApplicationUI {
 
                     default:
                 }
-            } 
+            }
             catch (InputMismatchException ime) {
                 System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
             }
@@ -82,8 +82,8 @@ public class ApplicationUI {
 
     /**
      * Displays the menu to the user, and waits for the users input. The user is
-     * expected to input an integer between 1 and the max number of menu items. 
-     * If the user inputs anything else, an InputMismatchException is thrown. 
+     * expected to input an integer between 1 and the max number of menu items.
+     * If the user inputs anything else, an InputMismatchException is thrown.
      * The method returns the valid input from the user.
      *
      * @param menuType input what menu that you want to be shown (mainMenu, productMenu).
@@ -140,7 +140,7 @@ public class ApplicationUI {
         }
         else {
             System.out.println("The products you have is: ");
-            System.out.println(literatureRegister.listAllLiteratures());
+            System.out.println(literatureRegister.listAllLiterature());
         }
     }
 
@@ -151,37 +151,37 @@ public class ApplicationUI {
     private void addNewProduct() {
         int literatureType = this.showMenu("productMenu");
 
-        /*try {*/
+        try {
             System.out.println("Enter title: ");
             String literatureName = readNextLine();
             checkForDuplicate(literatureName);
-    
+
             System.out.println("Enter author: ");
             String literatureAuthor = readNextLine();
-    
+
             switch (literatureType) {
-    
+
                 case 1: //Book
                     System.out.println("Enter book genre: ");
                     String literatureGenre = readNextLine();
                     literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
                     System.out.println("Book register successful");
                     break;
-    
+
                 case 2: //Book series
                     boolean addingBooks = true;
                     System.out.println("Enter genre of book's in the series: ");
                     String seriesGenre = readNextLine();
                     literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
-    
-                    while(addingBooks) {
-    
+
+                    while (addingBooks) {
+
                         System.out.println("Do you want to add a book to " + literatureName + "? (yes or no)");
-    
+
                         String yesOrNo = readNextLine();
-                        if(testForMissMatch("YesOrNo", yesOrNo)) {
+                        if (!testForMissMatch("YesOrNo", yesOrNo)) {
                             //To test for a miss match.
-                            if(yesOrNo.equals("yes")) {
+                            if (yesOrNo.equals("yes")) {
                                 System.out.println("Enter title of book you want to add: ");
                                 String literatureToBeAddedTitle = readNextLine();
                                 checkForDuplicate(literatureToBeAddedTitle);
@@ -193,35 +193,32 @@ public class ApplicationUI {
                             }
                         }
                     }
-    
+
                     break;
-    
+
                 case 3: //New's papers
                     System.out.println("Enter brand of new's paper: ");
                     String newsPaperBrand = readNextLine();
                     literatureRegister.add(new NewsPaper(literatureName, literatureAuthor, newsPaperBrand));
                     System.out.println("New's paper register successful");
                     break;
-    
+
                 case 4: //Magazine
                     System.out.println("Enter brand of magazine: ");
                     String literatureBrand = readNextLine();
                     literatureRegister.add(new Magazine(literatureName, literatureAuthor, literatureBrand));
                     System.out.println("Magazine register successful");
                     break;
-    
-                    default:
-                        System.out.println("ERROR");
-                        break;
+
+                default:
+                    System.out.println("ERROR");
+                    break;
             }
-            /*
+
         }
-        
-        
-        catch(IllegalArgumentException e) {
+        catch (IllegalArgumentException e){
             System.out.println(e);
         }
-        */
     }
 
     /**
@@ -229,9 +226,9 @@ public class ApplicationUI {
      */
     private void removeProduct() {
         String literatureName;
+        System.out.println("Do you want to delete literature from register or from book series?");
         String answer = readNextLine();
 
-        System.out.println("Do you want to delete literature from register or from book series?");
         while(testForMissMatch("RegisterOrBookSeries", answer)) {
             answer = readNextLine();
 
