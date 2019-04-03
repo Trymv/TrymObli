@@ -81,17 +81,26 @@ public class RegisterTest
     {
         register1.add(book1);
         register1.add(book2);
-        assertFalse(register1.removeBook("Cats"));
-    }
-    
-    
-
+        assertFalse(register1.removeLiterature("Cats"));
+    }    
+   
     @Test
     public void removeLiteratureTest()
     {
         register1.add(book1);
         register1.add(book2);
         assertTrue(register1.removeLiterature("Mysteriekammeret"));
+    }
+    
+    @Test
+    public void listAllLiteratureTest() 
+    {
+        register1.add(book1);
+        register1.add(book2);
+        register1.add(bookseries1);
+        assertEquals("De vises stein\n" + 
+                      "Mysteriekammeret\n" +
+                      "Harry Potter\n", register1.listAllLiterature());
     }
 }
 

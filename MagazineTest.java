@@ -67,6 +67,39 @@ public class MagazineTest {
         assertNotNull(magazine1.getAuthor());
         assertNotNull(magazine1.getBrand());
     }
+    
+    @Test
+    public void testTitleNull()
+    {
+        try {
+            Magazine magazine2 = new Magazine(null, "Catman", "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testAuthorNull()
+    {
+        try {
+            Magazine magazine2 = new Magazine("MagazineTitleeMan!", null, "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testBrandNull()
+    {
+        try {
+            Magazine magazine2 = new Magazine("MagazineTitleeMan!", "Catman", null);
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Magazine brand was set to null" ,e.getMessage());
+        }
+    }
 }
 
 

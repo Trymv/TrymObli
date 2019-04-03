@@ -66,6 +66,39 @@ public class NewsPaperTest {
         assertNotNull(newspaper1.getAuthor());
         assertNotNull(newspaper1.getBrand());
     }
+    
+    @Test
+    public void testTitleNull()
+    {
+        try {
+            NewsPaper newspaper2 = new NewsPaper(null, "Catman", "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testAuthorNull()
+    {
+        try {
+            NewsPaper newspaper2 = new NewsPaper("NewsPaperTitleMan!", null, "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testBrandNull()
+    {
+        try {
+            NewsPaper newspaper2 = new NewsPaper("NewsPaperTitleMan!", "Catman", null);
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("News paper brand was set to null" ,e.getMessage());
+        }
+    }
 }
 
 

@@ -97,6 +97,39 @@ public class BookSeriesTest {
     {      
         assertEquals(true, bookseries1.removeBookFromSeries("De vises stein"));
     }
+    
+    @Test
+    public void testTitleNull()
+    {
+        try {
+            BookSeries bookseries2 = new BookSeries(null, "Catman:)", "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testAuthorNull()
+    {
+        try {
+            BookSeries bookseries2 = new BookSeries("BookSeriestitleMan!", null, "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testGenreNull()
+    {
+        try {
+            BookSeries bookseries2 = new BookSeries("BookSeriestitleMan!", "Catman", null);
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Book series genre was set to null" ,e.getMessage());
+        }
+    }
 }
 
 

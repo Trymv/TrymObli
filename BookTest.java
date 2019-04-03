@@ -69,8 +69,34 @@ public class BookTest {
     @Test
     public void testTitleNull()
     {
-        Book book2 = new Book(null, "Catman", "Horror");
-        assertNotNull(book2.getTitle());
+        try {
+            Book book2 = new Book(null, "Catman", "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testAuthorNull()
+    {
+        try {
+            Book book2 = new Book("BooktitleMan!", null, "Horror");
+        }
+        catch(IllegalArgumentException e) {
+            assertEquals("Title or author was set to null" ,e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testGenreNull()
+    {
+        try {
+            Book book2 = new Book("BooktitleMan!", "Catman", null);
+        }
+        catch(IllegalArgumentException e) {
+             assertEquals("Book genre was set to null" ,e.getMessage());
+        }
     }
 }
 
