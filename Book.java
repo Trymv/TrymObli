@@ -17,7 +17,8 @@ public class Book extends Literature {
         if (genre != null) {
             this.genre = genre;
         }
-        else {            throw new IllegalArgumentException("Genre was set to null");            
+        else {
+            throw new IllegalArgumentException("Book genre was set to null");
         }
     }
 

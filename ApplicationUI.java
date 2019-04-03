@@ -219,7 +219,7 @@ public class ApplicationUI {
 
         }
         catch (IllegalArgumentException e){
-            System.out.println(e);
+            System.out.println("Illegal value was set. Please try again.");
         }
     }
 
@@ -268,30 +268,31 @@ public class ApplicationUI {
      * to print the details of the found item.
      */
     private void findProductByName() {
+        StringBuilder outPrintText = new StringBuilder();
         System.out.println("Enter search: ");
         String search = readNextLine();
 
         if(literatureRegister.searchByName(search) != null) {
             Literature literature = literatureRegister.searchByName(search);
-            String outPrintText = "The literature title is: " + literature.getTitle() + ".\n"
-                    + "The literature author is: " + literature.getAuthor() + ".\n";
+            outPrintText.append("The literature title is: ").append(literature.getTitle()).append(".\n")
+                    .append("The literature author is: ").append(literature.getAuthor()).append(".\n");
             if(literature instanceof Book) {
-                outPrintText += "The book genre is: " + ((Book) literature).getGenre() + ".\n";
+                outPrintText.append("The book genre is: ").append(((Book) literature).getGenre()).append(".\n");
             }
             if(literature instanceof Magazine) {
-                outPrintText += "The magazine brand is: " + ((Magazine) literature).getBrand() + ".\n";
+                outPrintText.append("The magazine brand is: ").append(((Magazine) literature).getBrand()).append(".\n");
             }
             if(literature instanceof NewsPaper) {
-                outPrintText += "The new's paper brand is: " + ((NewsPaper) literature).getBrand() + ".\n";
+                outPrintText.append("The new's paper brand is: ").append(((NewsPaper) literature).getBrand()).append(".\n");
             }
             if(literature instanceof BookSeries) {
-                outPrintText += "The literature brand is: " + ((BookSeries) literature).getGenre() + ".\n" + "The books in this series is: " + "\n" + (((BookSeries) literature).listAllBooks());
+                outPrintText.append("The literature brand is: ").append(((BookSeries) literature).getGenre()).append(".\n").append("The books in this series is: ").append("\n").append((((BookSeries) literature).listAllBooks()));
             }
-            System.out.println(outPrintText);
         }
         else {
-            System.out.println("No literature with the name: " + search + " found.");
+            outPrintText.append("No literature with the name ").append(search).append(" found.");
         }
+        System.out.println(outPrintText);
     }
 
     /**
@@ -337,6 +338,32 @@ public class ApplicationUI {
     }
 
     /**
+     * Checks if input string contains at least one alphabetic.
+     * @return true if input string contains at least one alphabetic.
+     */
+    private boolean containsAtleastOneAlphabet(String wordToTest){
+        boolean oneAlphabetic = false;
+        boolean atLeastOneAlphabetic = wordToTest.matches(".*[a-zA-Z]+.*");
+        if(atLeastOneAlphabetic) {
+            oneAlphabetic = true;
+        }
+        return oneAlphabetic;
+    }
+
+    /**
+     * Checks if input string contains at least one number.
+     * @return true if input string contains at least one number.
+     */
+    private boolean containsAtleastOneNumber(String wordToTest){
+        boolean oneNumber = false;
+        boolean atLeastOneNumber = wordToTest.matches(".*[1-9]+.*");
+        if(atLeastOneNumber) {
+            oneNumber = true;
+        }
+        return oneNumber;
+    }
+
+    /**
      * Takes in a String to choose what case of miss match and String of a word to test against.
      * If there is a miss match this method will return true and print an error message.
      * @param missMatchCase what case of miss match. (YesOrNo, RegisterOrBookSeries)
@@ -344,7 +371,7 @@ public class ApplicationUI {
      * @return false if there is no miss match.
      * @throws InputMismatchException if user enters an invalid text.
      */
-    private boolean testForMissMatch(String missMatchCase, String missMatchToTest) throws InputMismatchException {
+    private boolean testForMissMatch(String missMatchCase, String missMatchToTest) {
         boolean missMatch = true;
         String errorText;
 

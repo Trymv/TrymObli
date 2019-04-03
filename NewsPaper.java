@@ -14,7 +14,12 @@ public class NewsPaper extends Literature {
      */
     public NewsPaper(String title, String author, String brand) {
         super(title, author);
-        this.brand = brand;
+        if(brand != null) {
+            this.brand = brand;
+        }
+        else {
+            throw new IllegalArgumentException("News paper brand was set to null");
+        }
     }
 
     /**

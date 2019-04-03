@@ -12,7 +12,12 @@ public class BookSeries extends Literature {
 
     public BookSeries(String title, String author, String genre) {
         super(title, author);
-        this.genre = genre;
+        if(genre != null) {
+            this.genre = genre;
+        }
+        else {
+            throw new IllegalArgumentException("Book series genre was set to null");
+        }
         this.booksInSeries = new ArrayList<>();
     }
 
