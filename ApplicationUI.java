@@ -43,10 +43,7 @@ public class ApplicationUI {
      * user.
      */
     public void start() {
-
-        literatureRegister.add(new Book("title", null, null));
-        
-        boolean quit = false;
+     boolean quit = false;
 
         while (!quit) {
             try {
@@ -177,7 +174,6 @@ public class ApplicationUI {
                     literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
 
                     while (addingBooks) {
-
                         System.out.println("Do you want to add a book to " + literatureName + "? (yes or no)");
 
                         String yesOrNo = readNextLine();
@@ -233,8 +229,9 @@ public class ApplicationUI {
 
         while(testForMissMatch("RegisterOrBookSeries", answer)) {
             answer = readNextLine();
-
-            if (answer.equals("register")) {
+        }
+        
+        if (answer.equals("register")) {
                 System.out.println("Enter name of product you want to remove: ");
                 literatureName = readNextLine();
 
@@ -244,7 +241,7 @@ public class ApplicationUI {
                     System.out.println("No product with the name " + literatureName + " found.");
                 }
             }
-            if (answer.equals("book series")) {
+        else if (answer.equals("book series")) {
                 System.out.println("Enter name of book series title:");
                 literatureName = readNextLine();
                 if (literatureRegister.doLiteratureExist(literatureName)) {
@@ -255,7 +252,6 @@ public class ApplicationUI {
                     System.out.println("No book series with the name " + literatureName + " exist.");
                 }
             }
-        }
     }
 
     /**

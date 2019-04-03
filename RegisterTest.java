@@ -52,30 +52,7 @@ public class RegisterTest
     public void tearDown()
     {
     }  
-    
-    /*  
-    @Test
-    public void bookSearchTest()
-    {
-        register1.add(book1);
-        assertEquals("The book title is: " + "Cat" 
-                + ". The book genre is: " + "Horror" 
-                + ". The book author is: " + "Catman"
-                + "\n", register1.searchByName("Cat"));
-    }
 
-    @Test
-    public void registerSizeTest()
-    {
-        Book book2 = new Book("Dog", "Horror", "cba");
-        register1.add(book1);
-        register1.add(book2);
-        assertEquals(2, register1.getArrayLength());
-    }
-
-    
-      @return false and fail to remove any books.
-    */
     @Test
     public void RemoveToFailTest()
     {
@@ -102,7 +79,25 @@ public class RegisterTest
                       "Mysteriekammeret\n" +
                       "Harry Potter\n", register1.listAllLiterature());
     }
+    
+    @Test
+    public void addLiteratureToSeriesTest()
+    {
+        register1.add(bookseries1);
+        register1.add(book1);
+        //register1.addLiteratureToSeries
+    }
+
+    @Test
+    public void testtest()
+    {
+        register1.add(bookseries1);
+        register1.add(book1);
+        register1.add(book2);
+        register1.addLiteratureToSeries("Harry Potter", book1);
+    }
 }
+
 
 
 
