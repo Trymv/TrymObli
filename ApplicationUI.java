@@ -5,7 +5,7 @@ import java.util.Scanner;
  * Makes up the user interface (text based) of the application.
  * Responsible for all user interaction, like displaying the menu
  * and receiving input from the user.
- *
+ * 
  * @author asty
  * @version 1.1
  */
@@ -13,6 +13,7 @@ public class ApplicationUI {
 
     private Register literatureRegister;
     private Scanner reader;
+    private TextInterface textInterface;
 
     // The menu tha will be displayed. Please edit/alter the menu
     // to fit your application (i.e. replace "product" with "literature"
@@ -32,10 +33,12 @@ public class ApplicationUI {
     };
 
     /**
-     * Creates an instance of the ApplicationUI User interface.
+     * Creates an instance of the ApplicationUI User interface. 
      */
     public ApplicationUI() {
         this.literatureRegister = new Register();
+        this.reader = new Scanner(System.in);
+        this.textInterface = new TextInterface();
     }
 
     /**
@@ -43,7 +46,8 @@ public class ApplicationUI {
      * user.
      */
     public void start() {
-     boolean quit = false;
+
+        boolean quit = false;
 
         while (!quit) {
             try {
@@ -66,23 +70,23 @@ public class ApplicationUI {
                     break;
 
                     case 5:
-                    System.out.println("\nThank you for using Application v0.1. Bye!\n");
+                    textInterface.textOutPrintln("\nThank you for using Application v0.1. Bye!\n");
                     quit = true;
                     break;
 
                     default:
                 }
-            }
+            } 
             catch (InputMismatchException ime) {
-                System.out.println("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
+                textInterface.textOutPrintln("\nERROR: Please provide a number between 1 and " + this.menuItems.length + "..\n");
             }
         }
     }
 
     /**
      * Displays the menu to the user, and waits for the users input. The user is
-     * expected to input an integer between 1 and the max number of menu items.
-     * If the user inputs anything else, an InputMismatchException is thrown.
+     * expected to input an integer between 1 and the max number of menu items. 
+     * If the user inputs anything else, an InputMismatchException is thrown. 
      * The method returns the valid input from the user.
      *
      * @param menuType input what menu that you want to be shown (mainMenu, productMenu).
@@ -95,31 +99,31 @@ public class ApplicationUI {
         switch (menuType) {
 
             case "mainMenu":
-                System.out.println("\n**** Application v0.1 ****\n");
+                textInterface.textOutPrintln("\n**** Application v0.1 ****\n");
                 // Display the menu
 
             for (String menuItem : menuItems) {
-                System.out.println(menuItem);
+                textInterface.textOutPrintln(menuItem);
             }
             maxMenuItemNumber = menuItems.length + 1;
                 // Add the "Exit"-choice to the menu
-                System.out.println(maxMenuItemNumber + ". Exit\n");
-                System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
+                textInterface.textOutPrintln(maxMenuItemNumber + ". Exit\n");
+                textInterface.textOutPrintln("Please choose menu item (1-" + maxMenuItemNumber + "): ");
                 // Read input from user
                 break;
 
             case "productMenu":
                 for (String literatureType : literatureTypes) {
-                    System.out.println(literatureType);
+                    textInterface.textOutPrintln(literatureType);
                 }
                 maxMenuItemNumber = literatureTypes.length;
-                System.out.println("Please choose menu item (1-" + maxMenuItemNumber + "): ");
+                textInterface.textOutPrintln("Please choose menu item (1-" + maxMenuItemNumber + "): ");
                 break;
 
                 default:
         }
 
-        int menuSelection = readNextInt();
+        int menuSelection = reader.nextInt();
         if ((menuSelection < 1) || (menuSelection > maxMenuItemNumber)) {
             throw new InputMismatchException();
         }
@@ -135,12 +139,38 @@ public class ApplicationUI {
      */
     private void listAllProducts() {
         if(literatureRegister.getBookRegister().isEmpty()) {
-            System.out.println("You don't have any products.");
+            textInterface.textOutPrintln("You don't have any products.");
         }
         else {
-            System.out.println("The products you have is: ");
-            System.out.println(literatureRegister.listAllLiterature());
+            textInterface.textOutPrintln("The products you have is: ");
+            textInterface.textOutPrintln(literatureRegister.listAllLiteratures());
         }
+    }
+
+    /**
+     * Add a new product/literature to the register.
+     * In this method you have to add code to ask the
+     * user for the necessary information you need to 
+     * create an instance of the product, which you
+     * then send as a parameter to the addNewspaper()-
+     * method of the register.
+     * Remember to also handle invalid input from the
+     * user!!
+     */
+    private void addNewProductOld() {
+        textInterface.textOutPrintln("addNewProduct() was called");
+
+        textInterface.textOutPrintln("Enter name: ");
+        String literatureName = reader.next();
+
+        textInterface.textOutPrintln("Enter genre: ");
+        String literatureGenre = reader.next();
+
+        textInterface.textOutPrintln("Enter author: ");
+        String literatureAuthor = reader.next();
+
+        literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
+        textInterface.textOutPrintln("Book register successful");
     }
 
     /**
@@ -149,109 +179,82 @@ public class ApplicationUI {
      */
     private void addNewProduct() {
         int literatureType = this.showMenu("productMenu");
+        reader.nextLine(); // Consume /n
 
-        try {
-            System.out.println("Enter title: ");
-            String literatureName = readNextLine();
-            checkForDuplicate(literatureName);
+        textInterface.textOutPrintln("Enter title: ");
+        String literatureName = textInterface.readNextLine();
 
-            System.out.println("Enter author: ");
-            String literatureAuthor = readNextLine();
+        textInterface.textOutPrintln("Enter author: ");
+        String literatureAuthor = reader.nextLine();
 
-            switch (literatureType) {
+        switch (literatureType) {
 
-                case 1: //Book
-                    System.out.println("Enter book genre: ");
-                    String literatureGenre = readNextLine();
-                    literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
-                    System.out.println("Book register successful");
-                    break;
+            case 1: //Book
+                textInterface.textOutPrintln("Enter book genre: ");
+                String literatureGenre = reader.nextLine();
+                literatureRegister.add(new Book(literatureName, literatureAuthor, literatureGenre));
+                textInterface.textOutPrintln("Book register successful");
+                break;
 
-                case 2: //Book series
-                    boolean addingBooks = true;
-                    System.out.println("Enter genre of book's in the series: ");
-                    String seriesGenre = readNextLine();
-                    literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
+            case 2: //Book series
+                boolean addingBooks = true;
+                textInterface.textOutPrintln("Enter genre of book's in the series: ");
+                String seriesGenre = reader.nextLine();
+                literatureRegister.add(new BookSeries(literatureName, literatureAuthor, seriesGenre));
 
-                    while (addingBooks) {
-                        System.out.println("Do you want to add a book to " + literatureName + "? (yes or no)");
+                while(addingBooks) {
+                    textInterface.textOutPrintln("Do you want to add a book to " + literatureName + "? (yes or no)");
 
-                        String yesOrNo = readNextLine();
-                        if (!testForMissMatch("YesOrNo", yesOrNo)) {
-                            //To test for a miss match.
-                            if (yesOrNo.equals("yes")) {
-                                System.out.println("Enter title of book you want to add: ");
-                                String literatureToBeAddedTitle = readNextLine();
-                                checkForDuplicate(literatureToBeAddedTitle);
-                                Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
-                                literatureRegister.addLiteratureToSeries(literatureName, newBook);
-                            }
-                            else if(yesOrNo.equals("no")) {
-                                addingBooks = false;
-                            }
-                        }
+                    if(textInterface.readNextLine().equals("yes")) {
+                        textInterface.textOutPrintln("Enter title of book you want to add: ");
+                        String literatureToBeAddedTitle = reader.nextLine();
+                        checkForDuplicate(literatureToBeAddedTitle);
+                        Book newBook = new Book(literatureToBeAddedTitle, literatureAuthor, seriesGenre);
+                        literatureRegister.addLiteratureToSeries(literatureName, newBook);
                     }
+                    if(textInterface.readNextLine().equals("no")) {
+                        addingBooks = false;
+                    }
+                }
 
-                    break;
+                break;
 
-                case 3: //New's papers
-                    System.out.println("Enter brand of new's paper: ");
-                    String newsPaperBrand = readNextLine();
-                    literatureRegister.add(new NewsPaper(literatureName, literatureAuthor, newsPaperBrand));
-                    System.out.println("New's paper register successful");
-                    break;
+            case 3: //New's papers
+                textInterface.textOutPrintln("Enter brand of new's paper: ");
+                String newsPaperBrand = reader.nextLine();
+                literatureRegister.add(new NewsPaper(literatureName, literatureAuthor, newsPaperBrand));
+                textInterface.textOutPrintln("New's paper register successful");
+                break;
 
-                case 4: //Magazine
-                    System.out.println("Enter brand of magazine: ");
-                    String literatureBrand = readNextLine();
-                    literatureRegister.add(new Magazine(literatureName, literatureAuthor, literatureBrand));
-                    System.out.println("Magazine register successful");
-                    break;
+            case 4: //Magazine
+                textInterface.textOutPrintln("Enter brand of magazine: ");
+                String literatureBrand = reader.nextLine();
+                literatureRegister.add(new Magazine(literatureName, literatureAuthor, literatureBrand));
+                textInterface.textOutPrintln("Magazine register successful");
+                break;
 
                 default:
-                    System.out.println("ERROR");
+                    textInterface.textOutPrintln("ERROR");
                     break;
-            }
+        }
 
-        }
-        catch (IllegalArgumentException e){
-            System.out.println("Illegal value was set. Please try again.");
-        }
     }
 
     /**
      * Find and remove a product based on the input name (title).
+     *
      */
     private void removeProduct() {
-        String literatureName;
-        System.out.println("Do you want to delete literature from register or from book series?");
-        String answer = readNextLine();
+        textInterface.textOutPrintln("Enter name of product you want to remove: ");
+        reader.nextLine(); // Consume /n
+        String literatureName = reader.nextLine();
 
-        while(testForMissMatch("RegisterOrBookSeries", answer)) {
-            answer = readNextLine();
+        if(literatureRegister.removeLiterature(literatureName)) {
+            textInterface.textOutPrintln("The product with the name " + literatureName + " is removed.");
         }
-        
-        if (answer.equals("register")) {
-                System.out.println("Enter name of product you want to remove: ");
-                literatureName = readNextLine();
-
-                if (literatureRegister.removeLiterature(literatureName)) {
-                    System.out.println("The product with the name " + literatureName + " is removed.");
-                } else {
-                    System.out.println("No product with the name " + literatureName + " found.");
-                }
-            }
-        else if (answer.equals("book series")) {
-                System.out.println("Enter name of book series title:");
-                literatureName = readNextLine();
-                if (literatureRegister.doLiteratureExist(literatureName)) {
-                    System.out.println("Enter name of the book you want to remove from " + literatureName + ":");
-                    String seriesTitle = readNextLine();
-                    literatureRegister.removeLiteratureFromSeries(literatureName, seriesTitle);
-                } else {
-                    System.out.println("No book series with the name " + literatureName + " exist.");
-                }
-            }
+        else{
+            textInterface.textOutPrintln("No product with the name " + literatureName + " found.");
+        }
     }
 
     /**
@@ -264,31 +267,10 @@ public class ApplicationUI {
      * to print the details of the found item.
      */
     private void findProductByName() {
-        StringBuilder outPrintText = new StringBuilder();
-        System.out.println("Enter search: ");
-        String search = readNextLine();
-
-        if(literatureRegister.searchByName(search) != null) {
-            Literature literature = literatureRegister.searchByName(search);
-            outPrintText.append("The literature title is: ").append(literature.getTitle()).append(".\n")
-                    .append("The literature author is: ").append(literature.getAuthor()).append(".\n");
-            if(literature instanceof Book) {
-                outPrintText.append("The book genre is: ").append(((Book) literature).getGenre()).append(".\n");
-            }
-            if(literature instanceof Magazine) {
-                outPrintText.append("The magazine brand is: ").append(((Magazine) literature).getBrand()).append(".\n");
-            }
-            if(literature instanceof NewsPaper) {
-                outPrintText.append("The new's paper brand is: ").append(((NewsPaper) literature).getBrand()).append(".\n");
-            }
-            if(literature instanceof BookSeries) {
-                outPrintText.append("The literature brand is: ").append(((BookSeries) literature).getGenre()).append(".\n").append("The books in this series is: ").append("\n").append((((BookSeries) literature).listAllBooks()));
-            }
-        }
-        else {
-            outPrintText.append("No literature with the name ").append(search).append(" found.");
-        }
-        System.out.println(outPrintText);
+        textInterface.textOutPrintln("Enter search: ");
+        reader.nextLine(); // Consume /n
+        String search = reader.nextLine();
+        textInterface.textOutPrintln(literatureRegister.searchByName(search));
     }
 
     /**
@@ -300,103 +282,18 @@ public class ApplicationUI {
         boolean waitingForAnswer = true;
         if(literatureRegister.doLiteratureExist(literatureToBeChecked)) {
             while(waitingForAnswer) {
-                System.out.println("A literature with the name " + literatureToBeChecked + " already exist. Do you want it to be removed and replaced? (yes or no)");
-                String userInput = readNextLine();
+                textInterface.textOutPrintln("A literature with the name " + literatureToBeChecked + " already exist. Do you want it to be removed? (yes or no)");
+                String userInput = reader.nextLine();
                 if(userInput.equals("yes")) {
                     literatureRegister.removeLiterature(literatureToBeChecked);
-                    System.out.println("Literature successfully removed.");
+                    textInterface.textOutPrintln("Literature successfully removed.");
                     waitingForAnswer = false;
                 }
                 if(userInput.equals("no")) {
-                    System.out.println("The literature was not removed.");
+                    textInterface.textOutPrintln("The literature was not removed.");
                     waitingForAnswer = false;
                 }
             }
         }
-    }
-
-    /**
-     * Read the next line of text the user input into the terminal.
-     * @return the line of text from the user.
-     */
-    private String readNextLine() {
-        this.reader = new Scanner(System.in);
-        return reader.nextLine();
-    }
-
-    /**
-     * Read the next integer from the user.
-     * @return the next integer from the user
-     */
-    private int readNextInt() {
-        this.reader = new Scanner(System.in);
-        return reader.nextInt();
-    }
-
-    /**
-     * Checks if input string contains at least one alphabetic.
-     * @return true if input string contains at least one alphabetic.
-     */
-    private boolean containsAtleastOneAlphabet(String wordToTest){
-        boolean oneAlphabetic = false;
-        boolean atLeastOneAlphabetic = wordToTest.matches(".*[a-zA-Z]+.*");
-        if(atLeastOneAlphabetic) {
-            oneAlphabetic = true;
-        }
-        return oneAlphabetic;
-    }
-
-    /**
-     * Checks if input string contains at least one number.
-     * @return true if input string contains at least one number.
-     */
-    private boolean containsAtleastOneNumber(String wordToTest){
-        boolean oneNumber = false;
-        boolean atLeastOneNumber = wordToTest.matches(".*[1-9]+.*");
-        if(atLeastOneNumber) {
-            oneNumber = true;
-        }
-        return oneNumber;
-    }
-
-    /**
-     * Takes in a String to choose what case of miss match and String of a word to test against.
-     * If there is a miss match this method will return true and print an error message.
-     * @param missMatchCase what case of miss match. (YesOrNo, RegisterOrBookSeries)
-     * @param missMatchToTest text to test miss match against.
-     * @return false if there is no miss match.
-     * @throws InputMismatchException if user enters an invalid text.
-     */
-    private boolean testForMissMatch(String missMatchCase, String missMatchToTest) {
-        boolean missMatch = true;
-        String errorText;
-
-        switch (missMatchCase) {
-            case "YesOrNo":
-                if(missMatchToTest.equals("yes") || missMatchToTest.equals("no")) {
-                    missMatch = false;
-                }
-                errorText = "yes or no";
-                break;
-
-            case "RegisterOrBookSeries":
-                if(missMatchToTest.equals("register") || missMatchToTest.equals("book series")) {
-                    missMatch = false;
-                }
-                errorText = "register or book series";
-                break;
-
-                default:
-                    errorText = "???";
-        }
-        try {
-            if(missMatch) {
-                throw new InputMismatchException();
-            }
-        }
-        catch (InputMismatchException ime) {
-            System.out.println("\nERROR: Please provide either " + errorText + "..\n");
-        }
-        return missMatch;
     }
 }

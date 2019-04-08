@@ -7,7 +7,8 @@ import java.util.Iterator;
  * @author Group 18
  * @version 1.1
  */
-public class Register {
+public class Register
+{
     // instance variables - replace the example below with your own
     private ArrayList<Literature> literatureRegister;
 
@@ -15,6 +16,7 @@ public class Register {
      * Constructor for objects of class Register
      */
     public Register() {
+
         this.literatureRegister = new ArrayList<>();
     }
     
@@ -23,6 +25,7 @@ public class Register {
      * @return literatureRegister as array list.
      */
     public ArrayList<Literature> getBookRegister() {
+
         return literatureRegister;
     }
 
@@ -31,8 +34,19 @@ public class Register {
      * @param literature add the book to the literature register (ArrayList).
      */
     public void add(Literature literature) {
+
         literatureRegister.add(literature);
     }
+
+    /**
+     * Add a book to an array list of a book series.
+     * @param literature add a book to a book in series.
+     *
+    public BookSeries makeBookSeries(String title, String author, String genre) {
+        BookSeries nameOfBookSeires = new BookSeries(title, author, genre);
+        return nameOfBookSeires;
+    }
+    */
 
     /**
      * Use iterator to search though literatureRegister with a parameter.
@@ -43,7 +57,7 @@ public class Register {
     public boolean removeLiterature(String objectToBeRemoved) {
         boolean isLiteratureRemoved = false;
         Iterator<Literature> it = literatureRegister.iterator();
-
+        
         while(it.hasNext()) {
             if(it.next().getTitle().equals(objectToBeRemoved)) {
                 it.remove();
@@ -61,22 +75,13 @@ public class Register {
      * @param newLiterature title of the literature you want to add.
      */
     public void addLiteratureToSeries(String seriesTitle, Book newLiterature) {
-        for(Literature literature:literatureRegister) {
+        Iterator<Literature> it = literatureRegister.iterator();
+
+        while(it.hasNext()) {
+            Literature literature = it.next();
+
             if (literature.getTitle().equals(seriesTitle) && literature instanceof BookSeries) {
                ((BookSeries) literature).addBook(newLiterature);
-            }
-        }
-    }
-
-    /**
-     *
-     * @param seriesTitle title of the series you want to remove book from.
-     * @param literatureToBeRemoved title of the literature you want to remove.
-     */
-    public void removeLiteratureFromSeries(String seriesTitle, String literatureToBeRemoved) {
-        for(Literature literature:literatureRegister) {
-            if (literature.getTitle().equals(seriesTitle) && literature instanceof BookSeries) {
-                ((BookSeries) literature).removeBookFromSeries(literatureToBeRemoved);
             }
         }
     }
@@ -105,37 +110,53 @@ public class Register {
      * List all books in the book register on the terminal.
      * @return bookList list of the titles of all the books
      */
-    public String listAllLiterature() {
-        StringBuilder literatureList = new StringBuilder();
-
+    public String listAllLiteratures() {
+        String literatureList = "";
+        
         for(Literature literature:literatureRegister) {
-            literatureList.append(literature.getTitle()).append("\n");
+            literatureList += literature.getTitle() + "\n";
         }
-        return literatureList.toString();
+        return literatureList;
     }
-
-    /**
-     * For testing
-     * @return size of list.
-     */
-    public int getArrayLength() {
-        return literatureRegister.size();
-    }
-
+    
     /**
      * Search on a literature if the list has a match that contains a word from the parameter.
-     * @param search put in the string of the literature you want to search for
-     * in the array list "bookRegister".
-     * @return searchResult will return the found literature. If not found it will return null.
+     * @param searchString put in the string of the book you want to search for 
+     * from the array list "bookRegister".
+     * List all books that contains the name you sent in.
+     * @return bookFound
      */
-    public Literature searchByName(String search) {
-        Literature searchResult = null;
-
-        for (Literature literature : literatureRegister) {
-            if (literature.getTitle().contains(search) || literature.getAuthor().contains(search)) {
-                searchResult = literature;
+    public String searchByName(String searchString) {
+        boolean foundBook = false;
+        String searchResult = "";
+        
+        for(Literature literature:literatureRegister) {
+            if(literature.getTitle().contains(searchString) || literature.getAuthor().contains(searchString)) {
+                searchResult += "The literature title is: " + literature.getTitle() + ".\n"
+                + "The literature author is: " + literature.getAuthor() + ".\n";
+                if(literature instanceof Book) {
+                    searchResult += "The book genre is: " + ((Book) literature).getGenre() + ".\n";
+                }
+                if(literature instanceof Magazine) {
+                    searchResult += "The magazine brand is: " + ((Magazine) literature).getBrand() + ".\n";
+                }
+                if(literature instanceof NewsPaper) {
+                    searchResult += "The new's paper brand is: " + ((NewsPaper) literature).getBrand() + ".\n";
+                }
+                if(literature instanceof BookSeries) {
+                    searchResult += "The literature brand is: " + ((BookSeries) literature).getGenre() + ".\n" + "The books in this series is: " + "\n" + (((BookSeries) literature).listAllBooks());
+                }
+                foundBook = true;
             }
         }
+        
+        if(!foundBook){
+                searchResult = ("No literature with the name: " + searchString + " found.");
+            }
         return searchResult;
+    }
+    
+    public int getArrayLength() {
+        return literatureRegister.size();
     }
 }

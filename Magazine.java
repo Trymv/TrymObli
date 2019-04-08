@@ -14,12 +14,7 @@ public class Magazine extends Literature {
      */
     public Magazine(String title, String author, String brand) {
         super(title, author);
-        if(brand != null) {
-            this.brand = brand;
-        }
-        else {
-            throw new IllegalArgumentException("Magazine brand was set to null");
-        }
+        this.brand = brand;
     }
 
     /**
@@ -27,6 +22,7 @@ public class Magazine extends Literature {
      * @return the brand of the magazine
      */
     public String getBrand() {
+
         return this.brand;
     }
 }

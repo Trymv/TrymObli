@@ -5,7 +5,7 @@
  * @author TrymV
  * @version 0.1
  */
-public class NewsPaper extends Literature {
+public class NewsPaper  extends Literature {
     private String brand;
 
     /**
@@ -14,12 +14,7 @@ public class NewsPaper extends Literature {
      */
     public NewsPaper(String title, String author, String brand) {
         super(title, author);
-        if(brand != null) {
-            this.brand = brand;
-        }
-        else {
-            throw new IllegalArgumentException("News paper brand was set to null");
-        }
+        this.brand = brand;
     }
 
     /**
@@ -27,6 +22,7 @@ public class NewsPaper extends Literature {
      * @return the brand of the magazine
      */
     public String getBrand() {
+
         return this.brand;
     }
 }

@@ -12,12 +12,7 @@ public class BookSeries extends Literature {
 
     public BookSeries(String title, String author, String genre) {
         super(title, author);
-        if(genre != null) {
-            this.genre = genre;
-        }
-        else {
-            throw new IllegalArgumentException("Book series genre was set to null");
-        }
+        this.genre = genre;
         this.booksInSeries = new ArrayList<>();
     }
 
@@ -50,24 +45,5 @@ public class BookSeries extends Literature {
             literatureList += literature.getTitle() + "\n";
         }
         return literatureList;
-    }
-
-    /**
-     * Use iterator to search though literatureRegister with a parameter.
-     * If an exact match is found the object will be removed.
-     * @param objectToBeRemoved remove the book from the book register (ArrayList).
-     * @return true if object was successfully removed.
-     */
-    public boolean removeBookFromSeries(String objectToBeRemoved) {
-        boolean isBookRemoved = false;
-        Iterator<Literature> it = booksInSeries.iterator();
-
-        while(it.hasNext()) {
-            if(it.next().getTitle().equals(objectToBeRemoved)) {
-                it.remove();
-                isBookRemoved = true;
-            }
-        }
-        return isBookRemoved;
     }
 }
